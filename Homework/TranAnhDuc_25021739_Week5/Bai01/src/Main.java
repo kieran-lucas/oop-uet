@@ -11,17 +11,25 @@ public class Main {
 	public static StringBuffer useStringBuffer() {
 		StringBuffer s = new StringBuffer();
 		for (int i = 0; i < 100000; i++) {
-			s.append("Helllo");
+			s.append("Hello");
 			
 		}
 		return s;
 
 	}
 	public static String contentAnalysis(String s) {
-		String newS = s.replace("Java", "Python");
-		return newS;
+    int count = 0;
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);  
+        if (c == '.' || c == '?' || c == '!') {
+            count++;
+        }
+    }
 
-	}
+    String newS = s.replace("Java", "Python");
+
+    return newS + "\nNumber of sentences: " + count;
+}
 	public static void main(String[] args) {
 		long start1 = System.currentTimeMillis();
 		useString();
@@ -31,7 +39,7 @@ public class Main {
 		useStringBuffer();
 		long end2 = System.currentTimeMillis();
 		System.out.print("Thoi gian chay ham 2 la: " + (end2 - start2) + " ms\n");
-		String s ="I like Java, I love Python, Java, Java, C++, Java";
+		String s = "I like Java, I love Python, Java, Java, C++, Java.";
 		System.out.println(s);
 		System.out.println("Sau khi thay the: ");
 		System.out.println(contentAnalysis(s));
